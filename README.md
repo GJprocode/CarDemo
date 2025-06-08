@@ -4,7 +4,7 @@ A demo web app built with **Angular** and **ASP.NET Core Web API** for user auth
 
 ## 🚀 Features
 
-- **Login**  
+- **Login & Register**  
   - Validates email format  
   - Password requires minimum 6 characters including:  
     - 1 uppercase, 1 lowercase, 1 number, and 1 special character  
