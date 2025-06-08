@@ -1,0 +1,42 @@
+<div class="cars-container">
+  <h2>Cars</h2>
+  <div>
+    <input type="text" (keyup)="applyFilter($event)" placeholder="Filter..." autocomplete="off" />
+    <button (click)="onExport()">Export to Excel</button>
+  </div>
+  <table mat-table [dataSource]="cars" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef (click)="sortData('id')">ID</th>
+      <td mat-cell *matCellDef="let element">{{element.id}}</td>
+    </ng-container>
+    <ng-container matColumnDef="carBrand">
+      <th mat-header-cell *matHeaderCellDef (click)="sortData('carBrand')">Brand</th>
+      <td mat-cell *matCellDef="let element">{{element.carBrand}}</td>
+    </ng-container>
+    <ng-container matColumnDef="carColour">
+      <th mat-header-cell *matHeaderCellDef (click)="sortData('carColour')">Colour</th>
+      <td mat-cell *matCellDef="let element">{{element.carColour}}</td>
+    </ng-container>
+    <ng-container matColumnDef="carPrice">
+      <th mat-header-cell *matHeaderCellDef (click)="sortData('carPrice')">Price</th>
+      <td mat-cell *matCellDef="let element">{{element.carPrice | currency}}</td>
+    </ng-container>
+    <ng-container matColumnDef="modelDate">
+      <th mat-header-cell *matHeaderCellDef (click)="sortData('modelDate')">Model Date</th>
+      <td mat-cell *matCellDef="let element">{{element.modelDate | date}}</td>
+    </ng-container>
+    <ng-container matColumnDef="inStock">
+      <th mat-header-cell *matHeaderCellDef (click)="sortData('inStock')">In Stock</th>
+      <td mat-cell *matCellDef="let element">{{element.inStock}}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <button (click)="router.navigate(['/login'])">Exit to Login</button>
+</div>
+<style>
+  .cars-container { margin: 20px; }
+  table { width: 100%; }
+  th { cursor: pointer; }
+  th:hover { background-color: #f5f5f5; }
+</style>
