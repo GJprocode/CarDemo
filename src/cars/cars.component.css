@@ -1,0 +1,12 @@
+.cars-container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.group-header {
+  background-color: #f3f4f6;
+}

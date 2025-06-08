@@ -1,26 +1,42 @@
-<div class="login-container">
-  <h2>Login</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="email">Email:</label>
-      <input id="email" formControlName="email" type="email" required>
-      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
-        Please enter a valid email.
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-4 text-center">Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" required autocomplete="email">
+        <mat-error *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">
+          Email is required.
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched">
+          Please enter a valid email.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" required autocomplete="current-password">
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
+          Password is required.
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('minlength') && loginForm.get('password')?.touched">
+          Password must be at least 6 characters.
+        </mat-error>
+      </mat-form-field>
+
+      <div *ngIf="errorMessage" class="text-red-500 text-sm text-center">
+        {{ errorMessage }}
       </div>
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input id="password" formControlName="password" type="password" autocomplete="current-password" required>
-      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
-        Password must be at least 6 characters with uppercase, lowercase, number, and special character.
-      </div>
-    </div>
-    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-    <button type="submit" [disabled]="loginForm.invalid">Login</button>
-    <a routerLink="/register">Register</a>
-  </form>
+
+      <button mat-raised-button color="primary" [disabled]="loginForm.invalid" class="w-full">
+        Login
+      </button>
+    </form>
+
+    <p class="text-center mt-4">
+      <a routerLink="/register" class="text-indigo-600 hover:text-indigo-800">
+        Need an account? Register
+      </a>
+    </p>
+  </div>
 </div>
-<style>
-  .login-container { margin: 20px; }
-  .error { color: red; }
-</style>

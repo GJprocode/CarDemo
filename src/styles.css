@@ -1,3 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+
 /* You can add global styles to this file, and also import other style files */
 /* Add global styles */
 body { margin: 0; font-family: Arial, sans-serif; }
