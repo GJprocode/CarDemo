@@ -1,0 +1,5 @@
+/* Optional layout fix */
+:host {
+  display: block;
+  width: 100%;
+}

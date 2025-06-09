@@ -1,7 +1,12 @@
 {
     "cSpell.words": [
+        "aspnet",
+        "bazel",
         "Colour",
         "devextreme",
-        "exceljs"
+        "exceljs",
+        "libpeerconnection",
+        "nojquery",
+        "testem"
     ]
 }

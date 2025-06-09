@@ -20,7 +20,7 @@
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/assets"],
             "styles": [
-              "@angular/material/prebuilt-themes/azure-blue.css",
+              "node_modules/devextreme/dist/css/dx.material.blue.light.css",
               "src/styles.css"
             ],
             "scripts": []

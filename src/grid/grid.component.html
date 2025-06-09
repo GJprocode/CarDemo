@@ -1,0 +1,52 @@
+<div style="padding: 24px; background: #f9f9f9; min-height: 100vh;">
+  <dx-data-grid
+    [dataSource]="dataSource"
+    [remoteOperations]="true"
+    [showBorders]="true"
+    [height]="600"
+    [columnAutoWidth]="true"
+    [rowAlternationEnabled]="true"
+    [allowColumnResizing]="true"
+    [allowColumnReordering]="true"
+  >
+    <!-- Export to Excel -->
+    <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
+
+    <!-- Grouping Panel -->
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+
+    <!-- Filters -->
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+    <!-- Search -->
+    <dxo-search-panel [visible]="true" [highlightCaseSensitive]="false"></dxo-search-panel>
+
+    <!-- Editing Toolbar -->
+    <dxo-editing
+      mode="row"
+      [allowAdding]="true"
+      [allowUpdating]="true"
+      [allowDeleting]="true"
+      [useIcons]="true"
+    ></dxo-editing>
+
+    <!-- Columns -->
+    <dxi-column dataField="carBrand" caption="Brand">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="carColour" caption="Colour">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="carPrice" caption="Price" dataType="number" format="currency">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="modelDate" caption="Model Date" dataType="date">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="inStock" caption="In Stock">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+  </dx-data-grid>
+</div>
