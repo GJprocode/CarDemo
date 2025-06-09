@@ -1,6 +1,12 @@
-﻿using Backend.Services;
+﻿using Backend.Data;
+using Backend.Models;
+using DevExtreme.AspNet.Data;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Backend.Helpers;
+
+
 
 namespace Backend.Controllers;
 
@@ -8,25 +14,72 @@ namespace Backend.Controllers;
 [ApiController]
 public class CarsController : ControllerBase
 {
-    private readonly CarService _carService;
+    private readonly AppDbContext _context;
 
-    public CarsController(CarService carService)
+    public CarsController(AppDbContext context)
     {
-        _carService = carService ?? throw new ArgumentNullException(nameof(carService));
+        _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetCars()
+    //  DevExtreme Grid: Filtering, Sorting, Grouping, Paging
+    [HttpGet("grid")]
+    public IActionResult GetCarsGrid()
     {
-        try
+        var loadOptions = new DevExtreme.AspNet.Data.DataSourceLoadOptionsBase();
+
+        // Manually parse query parameters
+        foreach (var kvp in Request.Query)
         {
-            var cars = await _carService.GetAllCars();
-            return Ok(cars);
+            loadOptions.SetOption(kvp.Key, kvp.Value.ToString());
         }
-        catch (Exception ex)
-        {
-            Serilog.Log.Error(ex, "Error fetching cars");
-            return StatusCode(500, "Error fetching cars");
-        }
+
+        var result = DataSourceLoader.Load(_context.Cars.AsNoTracking(), loadOptions);
+        return new JsonResult(result); // Important: don't wrap in Ok()
+    }
+
+
+
+
+
+    //  Insert Car
+    [HttpPost]
+    public IActionResult InsertCar([FromBody] IDictionary<string, object> values)
+    {
+        var car = JsonConvert.DeserializeObject<Car>(JsonConvert.SerializeObject(values));
+        if (car == null)
+            return BadRequest("Invalid car data.");
+
+        _context.Cars.Add(car);
+        _context.SaveChanges();
+
+        return Ok(car);
+    }
+
+    //  Update Car by ID
+    [HttpPut]
+    public IActionResult UpdateCar(int key, [FromBody] IDictionary<string, object> values)
+    {
+        var car = _context.Cars.FirstOrDefault(c => c.Id == key);
+        if (car == null)
+            return NotFound();
+
+        JsonConvert.PopulateObject(JsonConvert.SerializeObject(values), car);
+        _context.SaveChanges();
+
+        return Ok(car);
+    }
+
+    // Delete Car by ID
+    [HttpDelete]
+    public IActionResult DeleteCar(int key)
+    {
+        var car = _context.Cars.FirstOrDefault(c => c.Id == key);
+        if (car == null)
+            return NotFound();
+
+        _context.Cars.Remove(car);
+        _context.SaveChanges();
+
+        return Ok();
     }
 }
