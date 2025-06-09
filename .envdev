@@ -1,0 +1,9 @@
+# Database Connection
+DEFAULT_CONNECTION=Server=;Database=;User Id=;Password=;TrustServerCertificate=True;
+
+# JWT Configuration
+JWT_KEY=your_jwt_secret
+JWT_ISSUER=your_issuer
+JWT_AUDIENCE=your_audience
+
+

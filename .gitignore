@@ -1,0 +1,37 @@
+﻿# Visual Studio and build output
+.vs/
+bin/
+obj/
+Logs/
+*.user
+*.suo
+*.sln.docstates
+
+# NuGet Packages
+packages/
+
+# Project-specific files
+*.csproj.user
+*.cache
+*.log
+[Dd]ebug/
+[Rr]elease/
+[Bb]uild/
+
+# Environment-specific files
+appsettings.Development.json
+appsettings.Production.json
+
+# Environment file
+.env
+
+# Docker
+Dockerfile*
+docker-compose*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Other
+Notes.txt
