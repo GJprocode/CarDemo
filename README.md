@@ -14,7 +14,7 @@ A demo web app built with **Angular** and **ASP.NET Core Web API** for user auth
   - Displays 10 rows of car data with 5 columns  
   - Data fetched from the ASP.NET Core API  
   - Supports grouping, filtering, and Excel export  
-  - Built with Angular Material components  
+  - Built with DevExpress Grid Component
 
 ## 🛠️ Tech Stack
 
