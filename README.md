@@ -18,8 +18,8 @@ A demo web app built with **Angular** and **ASP.NET Core Web API** for user auth
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** Angular 20.0.1, Angular Material  
-- **Backend:** ASP.NET Core Web API  
+- **Frontend:** Angular 20.0.1, DevExpress/Extreme 
+- **Backend:** ASP.NET Core Web API (.NET 8) 
 - **Database:** SQL Server  
 - **Testing:** xUnit for .NET backend unit testing  
 
@@ -31,5 +31,5 @@ A demo web app built with **Angular** and **ASP.NET Core Web API** for user auth
 
 ## 📌 Notes
 
-- DevExpress components not used — Angular Material used instead (no license acquired)  
+- DevExpress components UI works, work around needed for functionality
 - Angular modules used for routing, reactive forms, table features, and UI components  
