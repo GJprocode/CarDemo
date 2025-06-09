@@ -4,8 +4,8 @@ Angular frontend for CarDemoApp with authentication and data grid.
 
 ## ✅ Features
 - Login & Register with validation
-- Data grid with grouping, filtering and Excel export
-- Angular Material UI
+- Data grid with grouping, filtering and Excel export(Showing, not functional, only search)
+- DevExpress
 
 ## 🛠️ Setup
 1. Clone repo: `git clone [https://github.com/GJprocode/CarDemo.git]`
